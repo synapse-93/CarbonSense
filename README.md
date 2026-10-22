@@ -3,7 +3,10 @@
 **AI-Powered Carbon Emission & AQI Intelligence Platform for Bengaluru**
 
 ---
-
+## HOSTED
+``` The Link :
+https://carbon-sense-murex.vercel.app/
+```
 ## Architecture
 
 ```
