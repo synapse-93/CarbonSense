@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { Wind, Droplets, Thermometer, Gauge, Zap, Activity, MapPin, Clock, AlertTriangle } from 'lucide-react';
 import { useStore } from '../store/useStore';
 import { runPrediction, formatDate, formatTime } from '../services/api';
 import { generateSolutions } from '../services/solutions';
-import { getAqiColor, getAqiLabel, getAqiGlow } from '../utils/aqi';
+import { getAqiColor, getAqiGlow } from '../utils/aqi';
 import { MetricCard } from './ui/MetricCard';
 import { LoadingSpinner } from './ui/LoadingSpinner';
 import { ErrorBanner } from './ui/ErrorBanner';
@@ -98,8 +97,6 @@ function ConfidenceRing({ value }: { value: number }) {
   );
 }
 
-const DONUT_COLORS = ['#06b6d4', '#818cf8', '#f97316', '#22c55e', '#eab308'];
-
 export const PredictTab: React.FC = () => {
   const {
     selectedLocation, predictionResult, setPredictionResult,
@@ -130,14 +127,6 @@ export const PredictTab: React.FC = () => {
   };
 
   const p = predictionResult;
-
-  const donutData = p ? [
-    { name: 'Transport', value: p.carbon_contributors.transport },
-    { name: 'Industrial', value: p.carbon_contributors.industrial },
-    { name: 'Residential', value: p.carbon_contributors.residential },
-    { name: 'Commercial', value: p.carbon_contributors.commercial },
-    { name: 'Other', value: p.carbon_contributors.other },
-  ] : [];
 
   return (
     <div className="flex flex-col gap-5">

@@ -11,6 +11,10 @@ __pycache__/
 venv/
 env/
 backend/.venv/
+test_venv/
+
+# Vercel
+.vercel/
 
 # Node
 node_modules/
@@ -22,6 +26,7 @@ build/
 # Environment
 .env
 .env.local
+.env.*.local
 
 # VSCode
 .vscode/

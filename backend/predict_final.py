@@ -18,10 +18,16 @@ except:
 try:
     from feature_extractor_live import GEEFeatureExtractorLive
     GEE_AVAILABLE = True
-    print("✓ GEE extractor imported")
+    try:
+        print("✓ GEE extractor imported")
+    except (UnicodeEncodeError, Exception):
+        print("[OK] GEE extractor imported")
 except Exception as e:
     GEE_AVAILABLE = False
-    print(f"❌ GEE import failed: {e}")
+    try:
+        print(f"❌ GEE import failed: {e}")
+    except (UnicodeEncodeError, Exception):
+        print(f"[WARN] GEE import failed: {e}")
 
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))

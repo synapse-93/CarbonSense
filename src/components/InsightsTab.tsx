@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer,
-  BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Cell,
-} from 'recharts';
-import { Leaf, Cloud, Thermometer, Building2, Users, Activity } from 'lucide-react';
+import { Leaf, Thermometer, Building2, Users, Activity, Wind } from 'lucide-react';
 import { useStore } from '../store/useStore';
-
-
 
 function getNdviStatus(v: number) {
   if (v >= 0.6) return { label: 'Dense Vegetation', color: '#22c55e' };
@@ -143,6 +137,16 @@ export const InsightsTab: React.FC = () => {
       extra: `Health risk exposure: ${s.population_density > 10000 ? 'Very High' : s.population_density > 5000 ? 'High' : 'Moderate'}`,
     },
     {
+      label: 'Tropospheric NO₂',
+      value: s.no2_column.toFixed(1),
+      unit: 'μmol/m²',
+      icon: <Wind size={18} />,
+      color: '#f97316',
+      status: getNo2Status(s.no2_column),
+      desc: 'Satellite nitrogen dioxide column density. Elevated values indicate heavy vehicular emissions and industrial combustion.',
+      extra: `NO₂ level: ${s.no2_column > 100 ? 'Critical' : s.no2_column > 50 ? 'Elevated' : 'Normal'}`,
+    },
+    {
       label: 'Pollution Index',
       value: p.pollution_index.toFixed(3),
       icon: <Activity size={18} />,
@@ -151,25 +155,6 @@ export const InsightsTab: React.FC = () => {
       desc: 'Composite ML-derived pollution index combining AQI, NO₂, aerosol depth, and carbon emission. Normalized 0–1 scale.',
       extra: `Aerosol depth: ${s.aerosol_optical_depth.toFixed(3)}`,
     },
-  ];
-
-  // Radar chart data (normalized 0–100)
-  const radarData = [
-    { metric: 'NDVI', value: Math.min(s.ndvi * 100, 100), fullMark: 100 },
-    { metric: 'NO₂', value: Math.min((s.no2_column / 200) * 100, 100), fullMark: 100 },
-    { metric: 'LST', value: Math.min(((s.land_surface_temperature - 20) / 25) * 100, 100), fullMark: 100 },
-    { metric: 'Building', value: Math.min(s.building_density, 100), fullMark: 100 },
-    { metric: 'Population', value: Math.min((s.population_density / 15000) * 100, 100), fullMark: 100 },
-    { metric: 'Pollution', value: Math.min(p.pollution_index * 100, 100), fullMark: 100 },
-  ];
-
-  // Comparison bar data
-  const barData = [
-    { name: 'NDVI', current: s.ndvi * 100, ideal: 60, color: '#22c55e' },
-    { name: 'NO₂ Norm', current: Math.min((s.no2_column / 200) * 100, 100), ideal: 20, color: '#f97316' },
-    { name: 'LST Offset', current: Math.max(0, s.land_surface_temperature - 20), ideal: 8, color: '#ef4444' },
-    { name: 'Bldg Density', current: s.building_density, ideal: 35, color: '#818cf8' },
-    { name: 'Pollution Idx', current: p.pollution_index * 100, ideal: 20, color: '#eab308' },
   ];
 
   return (

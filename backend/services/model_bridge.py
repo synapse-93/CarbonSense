@@ -46,7 +46,10 @@ def _load_model():
         # Use the correct function
         _predict_fn = predictor.predict_at_datetime
 
-        print("✓ Loaded BangaloreAQIPredictor successfully")
+        try:
+            print("✓ Loaded BangaloreAQIPredictor successfully")
+        except (UnicodeEncodeError, Exception):
+            print("[OK] Loaded BangaloreAQIPredictor successfully")
 
         return True
 

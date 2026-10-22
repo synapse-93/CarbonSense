@@ -1,20 +1,13 @@
 import axios from 'axios';
 import type { PredictionResult, ForecastPoint, SimulationResult, LocationData } from '../store/useStore';
 
-const API_BASE =
-  import.meta.env.VITE_BACKEND_URL ||
-  'https://meow-production-9b74.up.railway.app';
-
 const api = axios.create({
   timeout: 60000,
   headers: { 'Content-Type': 'application/json' },
 });
 
-function getBaseUrl() {
-  return (
-    import.meta.env.VITE_BACKEND_URL ||
-    'https://meow-production-9b74.up.railway.app'
-  );
+function getBaseUrl(): string {
+  return import.meta.env.VITE_BACKEND_URL || '';
 }
 
 export interface PredictRequest {

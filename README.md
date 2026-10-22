@@ -65,6 +65,21 @@ npm run build
 docker-compose up --build
 ```
 
+### 5. Vercel Deployment
+
+Deploying on Vercel is turnkey and ready out of the box:
+
+1. Push your repository to GitHub.
+2. In the [Vercel Dashboard](https://vercel.com/dashboard), click **"Add New Project"** and import your repository.
+3. Vercel automatically detects the project configuration:
+   - **Framework Preset**: `Vite`
+   - **Build Command**: `npm run build`
+   - **Output Directory**: `dist`
+4. *(Optional)* If you wish to connect an external Python Flask backend (e.g. on Railway, Render, or a VPS):
+   - Add Environment Variable: `VITE_BACKEND_URL` = `https://your-backend-service.com`
+   - *If omitted, the native high-performance Vercel Serverless API (`api/`) handles all predictions, forecasts, and simulations automatically.*
+5. Click **Deploy**.
+
 ---
 
 ## API Endpoints

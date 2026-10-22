@@ -125,7 +125,7 @@ export default function App() {
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <p className="text-[10px] text-slate-700">CarbonSense AI · Powered by predict_final.py ML Pipeline · Bengaluru Environmental Intelligence</p>
           <div className="flex items-center gap-3">
-            <span className="text-[10px] text-slate-700">Backend: <span className="text-slate-600">{(window as any).__BACKEND_URL || 'meow-production-9b74.up.railway.app'}</span></span>
+            <span className="text-[10px] text-slate-700">Backend: <span className="text-slate-600">{(window as any).__BACKEND_URL || import.meta.env.VITE_BACKEND_URL || 'Active (Vercel Serverless / API)'}</span></span>
             <div className="flex items-center gap-1">
               <div className="w-1.5 h-1.5 rounded-full" style={{ background: '#1e3a5f' }} />
               <span className="text-[10px] text-slate-700">OpenStreetMap · Nominatim</span>

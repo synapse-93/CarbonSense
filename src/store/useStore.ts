@@ -170,5 +170,5 @@ export const useStore = create<AppState>((set) => ({
   activeTab: 'map',
   setActiveTab: (t) => set({ activeTab: t }),
 
-  backendUrl: import.meta.env.VITE_BACKEND_URL || 'https://meow-production-9b74.up.railway.app',
+  backendUrl: import.meta.env.VITE_BACKEND_URL || (typeof window !== 'undefined' ? window.location.origin : ''),
 }));
