@@ -1,0 +1,14 @@
+.git
+.venv
+venv
+test_venv
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+*.md
+Dockerfile
+.dockerignore
+Procfile
+runtime.txt
+*.log
